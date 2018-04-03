@@ -25,24 +25,28 @@ tmp = 'bilal';
 
 async function getPrices(){
 
-	return await client2.prices();
+	console.log(await client2.allOrders({
+  symbol: 'ETHBTC',
+}))
+	
 };
 
+getPrices();
 
-
+// setInterval(getPrices,1000);
 // test();
 
-var express = require('express');
-var app = express();
+// var express = require('express');
+// var app = express();
 
-app.get('/data',function(req,res){
-	promise = getPrices();
-	console.log(tmp);
+// app.get('/data',function(req,res){
+	// promise = getPrices();
+	// console.log(tmp);
 	
-	promise.then(function(result) {
-        // use the result...
-        res.send(result);
-    });
-});
+	// promise.then(function(result) {
+        // // use the result...
+        // res.send(result);
+    // });
+// });
 
-app.listen(80);
+// app.listen(80);
