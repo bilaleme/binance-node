@@ -17,9 +17,13 @@ async-limiter@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.0.tgz#78faed8c3d074ab81f22b4e985d79e8738f720f8"
 
-binance-api-node@^0.7.4:
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/binance-api-node/-/binance-api-node-0.7.4.tgz#dd4cd23061e35e732afdb62ed8c5eabd1588d801"
+bin@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/bin/-/bin-0.0.0.tgz#826a5d611f7a03bf6713bfe4685a85da44032447"
+
+binance-api-node@^0.7.6:
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/binance-api-node/-/binance-api-node-0.7.6.tgz#5bf9f54278ccaf0f65a799c8253aed9c160e53c1"
   dependencies:
     html5-websocket "^2.0.2"
     isomorphic-fetch "^2.2.1"
