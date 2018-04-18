@@ -87,7 +87,7 @@ async function getPrices(responseObject){
       BigArray[item.symbol].symbol = item.symbol;
     } else {
 
-      if(BigArray[item.symbol].history.length == 10){
+      if(BigArray[item.symbol].history.length == 100){
         BigArray[item.symbol].history.splice(0,1);
         BigArray[item.symbol].history.push(parseFloat(item.priceChangePercent));
       } else {
