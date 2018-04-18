@@ -1,0 +1,42 @@
+
+<html>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+          href="static/bower_components/chartist/dist/chartist.min.css">
+
+<body>
+
+
+    <div id="app" class='row' style='margin-top:20px;'>
+
+        <div class='col-lg-2'></div>
+        <div class='col-lg-4'>
+            <a v-for='(stat,index) in stats' href='#'>
+                <h3>{{stat.symbol}}</h3><br>
+                <p>{{stat.history}}</p><br>
+                <div :class='index'></div>
+            </a>
+        </div>
+
+    </div>
+
+
+
+    <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="/static/bower_components/chartist/dist/chartist.min.js"></script>
+
+<script src="/static/index.js"></script>
+
+</body>
+</html>

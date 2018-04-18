@@ -1,15 +1,17 @@
 
 
+
+
 const Binance = require('binance-api-node').default
 
 const client = Binance();
 
 const client2 = Binance({
-  apiKey: '',
-  apiSecret: '',
+  apiKey: 'phSZA1mF1O8SlefXWx43TzTG8MEyIUK3SPrxrSPyxttlXwxlpJNLlsm0sWsz9C4d',
+  apiSecret: 'bDkiOZdq97LfbPdJnoUvTqmKNnnergR2gKZGD7JCxnGtIKPqh056iUSS8nU99jYS',
 });
 
-var BigArray = ['kajsldfhaflsadkajsldfhaflsadkajsldfhaflsadkajsldfhaflsadkajsldfhaflsadkajsldfhaflsadkajsldfhaflsadkajsldfhaflsadkajsldfhaflsadkajsldfhaflsadkajsldfhaflsadkajsldfhaflsad'];
+var BigArray = {};
 
 tmp = 'bilal';
 
@@ -71,7 +73,7 @@ function computeFiveGradient(item){
   return grad;
 }
 
-async function getPrices(){
+async function getPrices(responseObject){
   var stats = await client2.dailyStats();
   
   for(var x=0;x<stats.length;x++){
@@ -82,18 +84,12 @@ async function getPrices(){
       BigArray[item.symbol] = {};
       BigArray[item.symbol].history = [];
       BigArray[item.symbol].history.push(parseFloat(item.priceChangePercent));
-      // BigArray[item.symbol].gradient = 0;
-      // BigArray[item.symbol].trend = 0;
       BigArray[item.symbol].symbol = item.symbol;
     } else {
 
       if(BigArray[item.symbol].history.length == 10){
         BigArray[item.symbol].history.splice(0,1);
-        // BigArray[item.symbol].gradient = computeFiveGradient(BigArray[item.symbol]);
-        // BigArray[item.symbol].gradient = precisionRound((BigArray[item.symbol].gradient + (parseFloat(item.lastPrice) - BigArray[item.symbol].history[BigArray[item.symbol].history.length - 1]))/2,8);
         BigArray[item.symbol].history.push(parseFloat(item.priceChangePercent));
-        //BigArray[item.symbol].trend = BigArray[item.symbol].history[BigArray[item.symbol].history.length - 1] - BigArray[item.symbol].history[0];
-        //BigArray[item.symbol].lowDiff = variance(BigArray[item.symbol].history)  * (item.lastPrice - item.lowPrice);
       } else {
         // BigArray[item.symbol].gradient = precisionRound((BigArray[item.symbol].gradient + (parseFloat(item.lastPrice) - BigArray[item.symbol].history[BigArray[item.symbol].history.length - 1]))/2,8);
         BigArray[item.symbol].history.push(parseFloat(item.priceChangePercent));
@@ -104,7 +100,10 @@ async function getPrices(){
   // var pitem = getLargestGradItem(BigArray);
   // pitem = pitem.gradient;
   // console.log(BigArray);
+  //return BigArray;
+
   return BigArray;
+  
 };
 
 async function getBGR(){
@@ -121,17 +120,28 @@ async function getAccountInfo(){
 }
 
 getAccountInfo();
+
 var express = require('express');
   var app = express();
 
+
+
+  app.use("/static", express.static(__dirname + '/static'));
+
   app.get('/data',function(req,res){
-    getPrices().then(function(result){
-      console.log(result);
-      res.send(typeof result);
-    });
+    
+    
+    res.sendFile(__dirname + '/static/index.html');
+    
   });
 
-  // setInterval(getPrices,10000);
+  app.get('/stats',function(req,res){
+    res.send(BigArray);
+  });
+
+
+
+  setInterval(getPrices,10000);
   app.listen(80);
 //test();
 
